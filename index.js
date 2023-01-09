@@ -11,5 +11,5 @@ app.use(bodyParser.json())
 app.use("/",router);
 
 app.listen(8686,() => {
-    console.log("Servidor rodando")
+    console.log("Server is running")
 });
