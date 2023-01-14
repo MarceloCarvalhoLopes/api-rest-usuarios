@@ -26,7 +26,21 @@ class User{
             console.log(err);
             return undefined;
         }
+    }
 
+    async findByEmail(email){
+        try {
+            var result = await knex.select(["id","name","email","role"]).table("users").where({email:email});
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+                 
+        } catch (err) {
+            console.log(err);
+            return undefined;
+        }
     }
 
     async create(email,password,name){
