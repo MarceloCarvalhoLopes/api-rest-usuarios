@@ -3,13 +3,14 @@ var app = express();
 var router = express.Router();
 var HomeController = require("../controllers/HomeController");
 var UserController = require("../controllers/UserController");
+var AdminAuth = require("../middleware/AdminAuth");
 
 router.get('/', HomeController.index);
 router.post('/user', UserController.create);
-router.get("/user", UserController.index);
-router.get("/user/:id", UserController.findById);
-router.put("/user", UserController.update);
-router.delete("/user/:id", UserController.delete);
+router.get("/user",AdminAuth,UserController.index);
+router.get("/user/:id",AdminAuth,UserController.findById);
+router.put("/user",AdminAuth, UserController.update);
+router.delete("/user/:id",AdminAuth,UserController.delete);
 router.post("/recoverpassword", UserController.recoverPassword);
 router.post("/changepassword", UserController.changePassword);
 router.post("/login", UserController.login);
